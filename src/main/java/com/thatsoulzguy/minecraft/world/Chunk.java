@@ -96,6 +96,9 @@ public class Chunk
 
     public void GenerateTopFace(Vector3f position)
     {
+        if(!sides.renderTop)
+            return;
+
         vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x,  0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(0.0f, 0.0f)));
         vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x,  0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(0.0f, 1.0f)));
         vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x,  0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(1.0f, 1.0f)));
@@ -114,6 +117,9 @@ public class Chunk
 
     public void GenerateBottomFace(Vector3f position)
     {
+        if(!sides.renderBottom)
+            return;
+
         vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x, -0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(0.0f, 0.0f)));
         vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x, -0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(0.0f, 1.0f)));
         vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x, -0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(1.0f, 1.0f)));
@@ -132,6 +138,9 @@ public class Chunk
 
     public void GenerateFrontFace(Vector3f position)
     {
+        if(!sides.renderFront)
+            return;
+
         vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x,  0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(0.0f, 0.0f)));
         vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x, -0.5f + position.y,  0.5f + position.z), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(0.0f, 1.0f)));
         vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x, -0.5f + position.y,  0.5f + position.z), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(1.0f, 1.0f)));
@@ -150,6 +159,9 @@ public class Chunk
 
     public void GenerateBackFace(Vector3f position)
     {
+        if(!sides.renderBack)
+            return;
+
         vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x,  0.5f + position.y, -0.5f + position.z), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(0.0f, 0.0f)));
         vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x, -0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(0.0f, 1.0f)));
         vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x, -0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(1.0f, 1.0f)));
@@ -168,6 +180,9 @@ public class Chunk
 
     public void GenerateRightFace(Vector3f position)
     {
+        if(!sides.renderRight)
+            return;
+
         vertices.add(Vertex.Register(new Vector3d(0.5f + position.x,  0.5f + position.y, -0.5f + position.z), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(0.0f, 0.0f)));
         vertices.add(Vertex.Register(new Vector3d(0.5f + position.x, -0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(0.0f, 1.0f)));
         vertices.add(Vertex.Register(new Vector3d(0.5f + position.x, -0.5f + position.y,  0.5f + position.z), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(1.0f, 1.0f)));
@@ -186,6 +201,9 @@ public class Chunk
 
     public void GenerateLeftFace(Vector3f position)
     {
+        if(!sides.renderLeft)
+            return;
+
         vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x,  0.5f + position.y, -0.5f + position.z), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(0.0f, 0.0f)));
         vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x, -0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(0.0f, 1.0f)));
         vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x, -0.5f + position.y,  0.5f + position.z), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(1.0f, 1.0f)));
