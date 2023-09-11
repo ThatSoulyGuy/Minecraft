@@ -9,7 +9,7 @@ public class World
 {
     public static Camera camera;
 
-    public static int CHUNK_RADIUS = 6;
+    public static int CHUNK_RADIUS = 1;
     public static Chunk[][] chunks = new Chunk[CHUNK_RADIUS][CHUNK_RADIUS];
 
     public static void Initialize()

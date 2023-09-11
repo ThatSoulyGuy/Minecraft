@@ -18,6 +18,14 @@
         <lwjgl.natives>natives-linux</lwjgl.natives>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>in-project</id>
+            <name>repo</name>
+            <url>file://${project.basedir}/Libraries</url>
+        </repository>
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -157,6 +165,13 @@
             <groupId>org.lwjglx</groupId>
             <artifactId>lwjgl3-awt</artifactId>
             <version>${lwjgl3-awt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>slick-util</groupId>
+            <artifactId>slick-util</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/Libraries/slick-util3.jar</systemPath>
         </dependency>
     </dependencies>
 

@@ -2,14 +2,13 @@ package com.thatsoulzguy.minecraft.rendering;
 
 import com.thatsoulzguy.minecraft.core.LogLevel;
 import com.thatsoulzguy.minecraft.core.Logger;
-import org.newdawn.slick.util.Log;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class ShaderManager
 {
-    private static ArrayList<ShaderObject> registeredObjects = new ArrayList<>();
+    private static final ArrayList<ShaderObject> registeredObjects = new ArrayList<>();
 
     public static void RegisterShader(ShaderObject object)
     {

@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Minecraft:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56360fc9-3262-40b2-b5f6-b9e9a9eef8f5" name="Changes" comment="Optimized Chunks.">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Minecraft_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/Minecraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/Minecraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/world/Chunk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/world/Chunk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/slick-util3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/slick-util3.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/rendering/ShaderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/rendering/ShaderManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/world/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/world/World.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,11 +66,15 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "/home/bb/Documents/IntellijProjects/Minecraft/pom.xml",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Libraries" />
       <recent name="C:\Users\bkmcm\IdeaProjects\Minecraft\src\main\resources\assets\minecraft\textures\block" />
       <recent name="C:\Users\bkmcm\IdeaProjects\Minecraft\src\main\resources\assets\minecraft\" />
       <recent name="C:\Users\bkmcm\IdeaProjects\Minecraft\src\main\resources\assets" />
@@ -82,6 +92,40 @@
       <option name="JAR_PATH" value="$PROJECT_DIR$/slick-util3.jar" />
       <method v="2" />
     </configuration>
+    <configuration name="Minecraft: Build" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="package" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Minecraft: Run" />
+      <item itemvalue="JAR Application.slick-util3.jar" />
+      <item itemvalue="Maven.Minecraft: Build" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JAR Application.slick-util3.jar" />
@@ -104,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694367531666</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Optimized Chunks.">
+      <option name="closed" value="true" />
+      <created>1694451098242</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1694451098242</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
