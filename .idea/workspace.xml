@@ -9,14 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56360fc9-3262-40b2-b5f6-b9e9a9eef8f5" name="Changes" comment="Optimized Chunks.">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Minecraft_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+    <list default="true" id="56360fc9-3262-40b2-b5f6-b9e9a9eef8f5" name="Changes" comment="Allowed for build of standalone application">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/util/TextureManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/slick-util3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/slick-util3.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/rendering/ShaderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/rendering/ShaderManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/world/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/world/World.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/rendering/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/rendering/Texture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/world/Chunk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/world/Chunk.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694451098242</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Allowed for build of standalone application">
+      <option name="closed" value="true" />
+      <created>1694459322284</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1694459322284</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -173,7 +178,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First Commit" />
     <MESSAGE value="Optimized Chunks." />
-    <option name="LAST_COMMIT_MESSAGE" value="Optimized Chunks." />
+    <MESSAGE value="Allowed for build of standalone application" />
+    <option name="LAST_COMMIT_MESSAGE" value="Allowed for build of standalone application" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

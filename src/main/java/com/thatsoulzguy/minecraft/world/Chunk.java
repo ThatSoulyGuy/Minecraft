@@ -8,10 +8,8 @@ import com.thatsoulzguy.minecraft.rendering.Renderer;
 import com.thatsoulzguy.minecraft.rendering.Texture;
 import com.thatsoulzguy.minecraft.rendering.Vertex;
 import com.thatsoulzguy.minecraft.util.NameIDTag;
-import org.joml.Vector2f;
-import org.joml.Vector3d;
-import org.joml.Vector3f;
-import org.joml.Vector3i;
+import com.thatsoulzguy.minecraft.util.TextureManager;
+import org.joml.*;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -32,7 +30,7 @@ public class Chunk
     public void Initialize()
     {
         mesh = new RenderableObject();
-        mesh.AddTexture(Texture.Register("textures/block/oak_planks.png"));
+        mesh.AddTexture(Texture.Register("/textures/atlases/terrain.png"));
         mesh.RegisterValues(name, vertices, indices, "default");
 
         for(int x = 0; x < CHUNK_SIZE; x++)
@@ -62,22 +60,22 @@ public class Chunk
                 for(int z = 0; z < CHUNK_SIZE; z++)
                 {
                     if(y + 1 >= CHUNK_SIZE || blocks[x][y + 1][z] == BlockType.AIR && sides.renderTop)
-                        GenerateTopFace(new Vector3f(x, y, z));
+                        GenerateTopFace(new Vector3f(x, y, z), TextureManager.GetTextureCoordinates(new Vector2i(0, 0)));
 
                     if(y - 1 < 0 || blocks[x][y - 1][z] == BlockType.AIR && sides.renderBottom)
-                        GenerateBottomFace(new Vector3f(x, y, z));
+                        GenerateBottomFace(new Vector3f(x, y, z), TextureManager.GetTextureCoordinates(new Vector2i(2, 0)));
 
                     if(z + 1 >= CHUNK_SIZE || blocks[x][y][z + 1] == BlockType.AIR && sides.renderFront)
-                        GenerateFrontFace(new Vector3f(x, y, z));
+                        GenerateFrontFace(new Vector3f(x, y, z), TextureManager.GetTextureCoordinatesRotated(new Vector2i(3, 0)));
 
                     if(z - 1 < 0 || blocks[x][y][z - 1] == BlockType.AIR && sides.renderBack)
-                        GenerateBackFace(new Vector3f(x, y, z));
+                        GenerateBackFace(new Vector3f(x, y, z), TextureManager.GetTextureCoordinatesRotated(new Vector2i(3, 0)));
 
                     if(x + 1 >= CHUNK_SIZE || blocks[x + 1][y][z] == BlockType.AIR && sides.renderRight)
-                        GenerateRightFace(new Vector3f(x, y, z));
+                        GenerateRightFace(new Vector3f(x, y, z), TextureManager.GetTextureCoordinatesRotated(new Vector2i(3, 0)));
 
                     if(x - 1 < 0 || blocks[x - 1][y][z] == BlockType.AIR && sides.renderLeft)
-                        GenerateLeftFace(new Vector3f(x, y, z));
+                        GenerateLeftFace(new Vector3f(x, y, z), TextureManager.GetTextureCoordinatesRotated(new Vector2i(3, 0)));
                 }
             }
         }
@@ -94,15 +92,15 @@ public class Chunk
         Rebuild();
     }
 
-    public void GenerateTopFace(Vector3f position)
+    public void GenerateTopFace(Vector3f position, Vector2f[] uvs)
     {
         if(!sides.renderTop)
             return;
 
-        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x,  0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(0.0f, 0.0f)));
-        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x,  0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(0.0f, 1.0f)));
-        vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x,  0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(1.0f, 1.0f)));
-        vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x,  0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 1.0f, 0.0f), new Vector2f(1.0f, 0.0f)));
+        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x,  0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(uvs[0].x, uvs[0].y)));
+        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x,  0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(uvs[1].x, uvs[1].y)));
+        vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x,  0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(uvs[2].x, uvs[2].y)));
+        vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x,  0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 1.0f, 0.0f), new Vector2f(uvs[3].x, uvs[3].y)));
 
         indices.add(3 + indiceIndex);
         indices.add(1 + indiceIndex);
@@ -115,15 +113,15 @@ public class Chunk
         indiceIndex += 4;
     }
 
-    public void GenerateBottomFace(Vector3f position)
+    public void GenerateBottomFace(Vector3f position, Vector2f[] uvs)
     {
         if(!sides.renderBottom)
             return;
 
-        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x, -0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(0.0f, 0.0f)));
-        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x, -0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(0.0f, 1.0f)));
-        vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x, -0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(1.0f, 1.0f)));
-        vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x, -0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 1.0f, 0.0f), new Vector2f(1.0f, 0.0f)));
+        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x, -0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(uvs[0].x, uvs[0].y)));
+        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x, -0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(uvs[1].x, uvs[1].y)));
+        vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x, -0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(uvs[2].x, uvs[2].y)));
+        vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x, -0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 1.0f, 0.0f), new Vector2f(uvs[3].x, uvs[3].y)));
 
         indices.add(indiceIndex);
         indices.add(1 + indiceIndex);
@@ -136,15 +134,15 @@ public class Chunk
         indiceIndex += 4;
     }
 
-    public void GenerateFrontFace(Vector3f position)
+    public void GenerateFrontFace(Vector3f position, Vector2f[] uvs)
     {
         if(!sides.renderFront)
             return;
 
-        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x,  0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(0.0f, 0.0f)));
-        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x, -0.5f + position.y,  0.5f + position.z), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(0.0f, 1.0f)));
-        vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x, -0.5f + position.y,  0.5f + position.z), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(1.0f, 1.0f)));
-        vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x,  0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 1.0f, 0.0f), new Vector2f(1.0f, 0.0f)));
+        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x,  0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(uvs[0].x, uvs[0].y)));
+        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x, -0.5f + position.y,  0.5f + position.z), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(uvs[1].x, uvs[1].y)));
+        vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x, -0.5f + position.y,  0.5f + position.z), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(uvs[2].x, uvs[2].y)));
+        vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x,  0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 1.0f, 0.0f), new Vector2f(uvs[3].x, uvs[3].y)));
 
         indices.add(indiceIndex);
         indices.add(1 + indiceIndex);
@@ -157,15 +155,15 @@ public class Chunk
         indiceIndex += 4;
     }
 
-    public void GenerateBackFace(Vector3f position)
+    public void GenerateBackFace(Vector3f position, Vector2f[] uvs)
     {
         if(!sides.renderBack)
             return;
 
-        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x,  0.5f + position.y, -0.5f + position.z), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(0.0f, 0.0f)));
-        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x, -0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(0.0f, 1.0f)));
-        vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x, -0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(1.0f, 1.0f)));
-        vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x,  0.5f + position.y, -0.5f + position.z), new Vector3f(1.0f, 1.0f, 0.0f), new Vector2f(1.0f, 0.0f)));
+        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x,  0.5f + position.y, -0.5f + position.z), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(uvs[0].x, uvs[0].y)));
+        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x, -0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(uvs[1].x, uvs[1].y)));
+        vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x, -0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(uvs[2].x, uvs[2].y)));
+        vertices.add(Vertex.Register(new Vector3d( 0.5f + position.x,  0.5f + position.y, -0.5f + position.z), new Vector3f(1.0f, 1.0f, 0.0f), new Vector2f(uvs[3].x, uvs[3].y)));
 
         indices.add(3 + indiceIndex);
         indices.add(1 + indiceIndex);
@@ -178,15 +176,15 @@ public class Chunk
         indiceIndex += 4;
     }
 
-    public void GenerateRightFace(Vector3f position)
+    public void GenerateRightFace(Vector3f position, Vector2f[] uvs)
     {
         if(!sides.renderRight)
             return;
 
-        vertices.add(Vertex.Register(new Vector3d(0.5f + position.x,  0.5f + position.y, -0.5f + position.z), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(0.0f, 0.0f)));
-        vertices.add(Vertex.Register(new Vector3d(0.5f + position.x, -0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(0.0f, 1.0f)));
-        vertices.add(Vertex.Register(new Vector3d(0.5f + position.x, -0.5f + position.y,  0.5f + position.z), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(1.0f, 1.0f)));
-        vertices.add(Vertex.Register(new Vector3d(0.5f + position.x,  0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 1.0f, 0.0f), new Vector2f(1.0f, 0.0f)));
+        vertices.add(Vertex.Register(new Vector3d(0.5f + position.x,  0.5f + position.y, -0.5f + position.z), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(uvs[0].x, uvs[0].y)));
+        vertices.add(Vertex.Register(new Vector3d(0.5f + position.x, -0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(uvs[1].x, uvs[1].y)));
+        vertices.add(Vertex.Register(new Vector3d(0.5f + position.x, -0.5f + position.y,  0.5f + position.z), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(uvs[2].x, uvs[2].y)));
+        vertices.add(Vertex.Register(new Vector3d(0.5f + position.x,  0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 1.0f, 0.0f), new Vector2f(uvs[3].x, uvs[3].y)));
 
         indices.add(3 + indiceIndex);
         indices.add(1 + indiceIndex);
@@ -199,15 +197,15 @@ public class Chunk
         indiceIndex += 4;
     }
 
-    public void GenerateLeftFace(Vector3f position)
+    public void GenerateLeftFace(Vector3f position, Vector2f[] uvs)
     {
         if(!sides.renderLeft)
             return;
 
-        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x,  0.5f + position.y, -0.5f + position.z), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(0.0f, 0.0f)));
-        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x, -0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(0.0f, 1.0f)));
-        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x, -0.5f + position.y,  0.5f + position.z), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(1.0f, 1.0f)));
-        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x,  0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 1.0f, 0.0f), new Vector2f(1.0f, 0.0f)));
+        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x,  0.5f + position.y, -0.5f + position.z), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(uvs[0].x, uvs[0].y)));
+        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x, -0.5f + position.y, -0.5f + position.z), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(uvs[1].x, uvs[1].y)));
+        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x, -0.5f + position.y,  0.5f + position.z), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(uvs[2].x, uvs[2].y)));
+        vertices.add(Vertex.Register(new Vector3d(-0.5f + position.x,  0.5f + position.y,  0.5f + position.z), new Vector3f(1.0f, 1.0f, 0.0f), new Vector2f(uvs[3].x, uvs[3].y)));
 
         indices.add(indiceIndex);
         indices.add(1 + indiceIndex);

@@ -39,7 +39,7 @@ public class Minecraft implements Runnable
         Input.InitInput();
 
         window = new Window();
-        window.GenerateWindow(new Vector2i(750, 450), "Minecraft* 0.1.1");
+        window.GenerateWindow(new Vector2i(750, 450), "Minecraft* 0.1.2");
         window.data.color = new Vector3f(0.0f, 0.24f, 0.45f);
 
         loadingDone = true;
