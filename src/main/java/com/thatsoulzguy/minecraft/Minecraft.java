@@ -1,18 +1,12 @@
 package com.thatsoulzguy.minecraft;
 
+import com.thatsoulzguy.minecraft.block.BlockType;
 import com.thatsoulzguy.minecraft.core.*;
 import com.thatsoulzguy.minecraft.rendering.*;
-import com.thatsoulzguy.minecraft.util.ANSIFormatter;
-import com.thatsoulzguy.minecraft.world.BlockType;
-import com.thatsoulzguy.minecraft.world.Chunk;
 import com.thatsoulzguy.minecraft.world.World;
 import org.joml.Vector2i;
 import org.joml.Vector3f;
-import org.joml.Vector3i;
 import org.lwjgl.glfw.GLFW;
-
-import java.time.LocalTime;
-import java.util.ArrayList;
 
 public class Minecraft implements Runnable
 {
@@ -42,6 +36,8 @@ public class Minecraft implements Runnable
         window.GenerateWindow(new Vector2i(750, 450), "Minecraft* 0.1.2");
         window.data.color = new Vector3f(0.0f, 0.24f, 0.45f);
 
+        BlockType.Initialize();
+
         loadingDone = true;
 
         camera = Camera.Register(new Vector3f(0.0f, 0.0f, 0.0f));
@@ -62,6 +58,7 @@ public class Minecraft implements Runnable
             GLFW.glfwSetWindowShouldClose(window.data.window, true);
 
         camera.Update();
+        World.UpdateChunks();
         Renderer.RenderObjects(camera);
 
         window.UpdateBuffers();

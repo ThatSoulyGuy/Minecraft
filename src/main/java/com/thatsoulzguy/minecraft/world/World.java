@@ -55,6 +55,15 @@ public class World
         }
     }
 
+    public static void UpdateChunks()
+    {
+        for (int x = 0; x < CHUNK_RADIUS; x++)
+        {
+            for (int z = 0; z < CHUNK_RADIUS; z++)
+                chunks[x][z].Update();
+        }
+    }
+
     public static void Register(Camera _camera)
     {
         camera = _camera;

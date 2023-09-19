@@ -1,7 +1,8 @@
 package com.thatsoulzguy.minecraft.world;
 
-import com.thatsoulzguy.minecraft.core.LogLevel;
-import com.thatsoulzguy.minecraft.core.Logger;
+import com.thatsoulzguy.minecraft.block.Block;
+import com.thatsoulzguy.minecraft.block.BlockType;
+import com.thatsoulzguy.minecraft.block.blocks.GrassBlock;
 import com.thatsoulzguy.minecraft.math.Transform;
 import com.thatsoulzguy.minecraft.rendering.RenderableObject;
 import com.thatsoulzguy.minecraft.rendering.Renderer;
@@ -18,7 +19,7 @@ public class Chunk
 {
     public static final int CHUNK_SIZE = 16;
     public RenderableObject mesh;
-    public int[][][] blocks = new int[CHUNK_SIZE][CHUNK_SIZE][CHUNK_SIZE];
+    public Block[][][] blocks = new Block[CHUNK_SIZE][CHUNK_SIZE][CHUNK_SIZE];
     public ArrayList<Vertex> vertices = new ArrayList<>();
     public ArrayList<Integer> indices = new ArrayList<>();
     public Transform transform;
@@ -38,7 +39,7 @@ public class Chunk
             for(int y = 0; y < CHUNK_SIZE; y++)
             {
                 for(int z = 0; z < CHUNK_SIZE; z++)
-                    blocks[x][y][z] = BlockType.SOLID;
+                    blocks[x][y][z] = new GrassBlock();
             }
         }
 
@@ -60,22 +61,22 @@ public class Chunk
                 for(int z = 0; z < CHUNK_SIZE; z++)
                 {
                     if(y + 1 >= CHUNK_SIZE || blocks[x][y + 1][z] == BlockType.AIR && sides.renderTop)
-                        GenerateTopFace(new Vector3f(x, y, z), TextureManager.GetTextureCoordinates(new Vector2i(0, 0)));
+                        GenerateTopFace(new Vector3f(x, y, z), TextureManager.GetTextureCoordinates(blocks[x][y][z].data.uvPositions[0]));
 
                     if(y - 1 < 0 || blocks[x][y - 1][z] == BlockType.AIR && sides.renderBottom)
-                        GenerateBottomFace(new Vector3f(x, y, z), TextureManager.GetTextureCoordinates(new Vector2i(2, 0)));
+                        GenerateBottomFace(new Vector3f(x, y, z), TextureManager.GetTextureCoordinates(blocks[x][y][z].data.uvPositions[1]));
 
                     if(z + 1 >= CHUNK_SIZE || blocks[x][y][z + 1] == BlockType.AIR && sides.renderFront)
-                        GenerateFrontFace(new Vector3f(x, y, z), TextureManager.GetTextureCoordinatesRotated(new Vector2i(3, 0)));
+                        GenerateFrontFace(new Vector3f(x, y, z), TextureManager.GetTextureCoordinatesRotated(blocks[x][y][z].data.uvPositions[2]));
 
                     if(z - 1 < 0 || blocks[x][y][z - 1] == BlockType.AIR && sides.renderBack)
-                        GenerateBackFace(new Vector3f(x, y, z), TextureManager.GetTextureCoordinatesRotated(new Vector2i(3, 0)));
+                        GenerateBackFace(new Vector3f(x, y, z), TextureManager.GetTextureCoordinatesRotated(blocks[x][y][z].data.uvPositions[3]));
 
                     if(x + 1 >= CHUNK_SIZE || blocks[x + 1][y][z] == BlockType.AIR && sides.renderRight)
-                        GenerateRightFace(new Vector3f(x, y, z), TextureManager.GetTextureCoordinatesRotated(new Vector2i(3, 0)));
+                        GenerateRightFace(new Vector3f(x, y, z), TextureManager.GetTextureCoordinatesRotated(blocks[x][y][z].data.uvPositions[4]));
 
                     if(x - 1 < 0 || blocks[x - 1][y][z] == BlockType.AIR && sides.renderLeft)
-                        GenerateLeftFace(new Vector3f(x, y, z), TextureManager.GetTextureCoordinatesRotated(new Vector2i(3, 0)));
+                        GenerateLeftFace(new Vector3f(x, y, z), TextureManager.GetTextureCoordinatesRotated(blocks[x][y][z].data.uvPositions[5]));
                 }
             }
         }
@@ -86,10 +87,24 @@ public class Chunk
         mesh.data.transform = transform;
     }
 
-    public void SetBlock(Vector3i position, int block)
+    public void SetBlock(Vector3i position, Block block)
     {
         blocks[position.x][position.y][position.z] = block;
         Rebuild();
+    }
+
+    public void Update()
+    {
+        for(int x = 0; x < CHUNK_SIZE; x++)
+        {
+            for (int y = 0; y < CHUNK_SIZE; y++)
+            {
+                for (int z = 0; z < CHUNK_SIZE; z++)
+                {
+                    blocks[x][y][z].OnTick(this);
+                }
+            }
+        }
     }
 
     public void GenerateTopFace(Vector3f position, Vector2f[] uvs)

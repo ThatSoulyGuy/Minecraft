@@ -76,7 +76,7 @@ public class Camera extends MovableEntity
     {
         Camera camera = new Camera();
 
-        Input.SetCursorMode(false);
+        //Input.SetCursorMode(false);
         camera.transform.position = position;
         camera.yaw = 0.0f;
         camera.pitch = 0.0f;

@@ -9,11 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56360fc9-3262-40b2-b5f6-b9e9a9eef8f5" name="Changes" comment="Allowed for build of standalone application">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/util/TextureManager.java" afterDir="false" />
+    <list default="true" id="56360fc9-3262-40b2-b5f6-b9e9a9eef8f5" name="Changes" comment="Added Texture Atlas">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/block/Block.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/block/BlockData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/block/blocks/AirBlock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/block/blocks/GrassBlock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/rendering/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/rendering/Texture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/Minecraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/Minecraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/rendering/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/rendering/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/world/BlockType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/block/BlockType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/world/Chunk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/world/Chunk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/world/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/world/World.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,9 +51,9 @@
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2UwrUscfaoN5iPSuGPKsl9i8SXU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -56,19 +62,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/bb/Documents/IntellijProjects/Minecraft/pom.xml",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/bb/Documents/IntellijProjects/Minecraft/pom.xml&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Libraries" />
@@ -161,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694459322284</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added Texture Atlas">
+      <option name="closed" value="true" />
+      <created>1694539716858</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1694539716858</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -179,7 +193,27 @@
     <MESSAGE value="First Commit" />
     <MESSAGE value="Optimized Chunks." />
     <MESSAGE value="Allowed for build of standalone application" />
-    <option name="LAST_COMMIT_MESSAGE" value="Allowed for build of standalone application" />
+    <MESSAGE value="Added Texture Atlas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Texture Atlas" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/thatsoulzguy/minecraft/block/blocks/GrassBlock.java</url>
+          <line>10</line>
+          <properties class="com.thatsoulzguy.minecraft.block.blocks.GrassBlock" method="Register">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
